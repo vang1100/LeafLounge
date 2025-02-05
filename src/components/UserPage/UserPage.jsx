@@ -2,6 +2,7 @@ import {React, useEffect, useState} from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
+import BookList from '../BookList/BookList';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -51,14 +52,16 @@ function UserPage() {
 
     <div className="container">
 
-     <p>"{randomQuote.text}" - {randomQuote.quote_by}</p>
+
+     <p align="center"><i>"{randomQuote.text}" - {randomQuote.quote_by}</i></p>
 {/* 
     {JSON.stringify(quoteList)} */}
 
     
 
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
+      <h5>Welcome, {user.username}!</h5>
+      <BookList/>
+      <br/>
       <LogOutButton className="btn" />
     </div>
   );
