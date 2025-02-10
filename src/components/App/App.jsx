@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import BookDetails from '../BookDetails/BookDetails';
 
 import './App.css';
 
@@ -68,6 +69,14 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            exact
+            patch="/book-details"
+          >
+            <BookDetails/>
+
+          </ProtectedRoute>
+
           <Route
             exact
             path="/login"
@@ -81,6 +90,7 @@ function App() {
               <LoginPage />
             }
           </Route>
+
 
           <Route
             exact
