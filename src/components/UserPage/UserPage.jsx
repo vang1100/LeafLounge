@@ -14,7 +14,7 @@ function UserPage() {
 
   const [randomQuote, setRandomQuote] = useState({ text: '', quote_by: '' });
 
-  const [bookList, setBookList] = useState([]);
+  const [bookList, setBookList] = useState({author: '', book_img: '', book_title: '', description: ''});
 
   useEffect(() => {
     fetchQuote();
@@ -58,28 +58,18 @@ function UserPage() {
 }
 
 
- // const fetchBook = () => {
-//   // axios.get(`/api/book/${user_id}`).then((response) => {
-
-//   //   const bookData = response.data;
-
-//   //  // console.log('what is the book data' , bookData);
-
-//   //  setBookList(bookData);
-
-//   // }).catch((error) => { 
-//   //   console.log(error);
-//   //   alert('Something went wrong.');
-
-//   // })
-// }
-
 const fetchBook = () => {
   //console.log('get books!');
 
   axios.get(`/api/book/${user_id}`).then((response) => {
-    const bookData = response.data;
-    setBookList(bookData);
+    console.log('what is the book data', response.data);
+    const book = response.data;
+    setBookList({
+      author: book.author,
+      book_img: book.book_img,
+      book_title: book.book_title,
+      description: book.description
+    });
   }).catch((error) => {
     console.log('error in getting book route', error);
     alert('something went wrong in /book route');
@@ -93,13 +83,12 @@ const fetchBook = () => {
 
 
      <p align="center"><i>"{randomQuote.text}" - {randomQuote.quote_by}</i></p>
-{/* 
-    {JSON.stringify(quoteList)} */}
 
 
 <p>Book stuff</p>
+    
+    <p>{bookList.author}</p>
 
-    {JSON.stringify(bookList)}
 
     
 
