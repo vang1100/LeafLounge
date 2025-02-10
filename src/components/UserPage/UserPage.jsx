@@ -8,12 +8,24 @@ function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
 
+  const user_id = useSelector(state=> state.user.id);
+
+  console.log('what is user_id', user_id);
 
   const [randomQuote, setRandomQuote] = useState({ text: '', quote_by: '' });
 
+  const [bookList, setBookList] = useState([]);
+
   useEffect(() => {
     fetchQuote();
+    
   }, []);
+
+  useEffect(() => {
+    fetchBook();
+  }, []);
+
+  
   // axios to get random quote
  
  const fetchQuote = () => {
@@ -37,15 +49,42 @@ function UserPage() {
       quote_by: quotes[randomIndex].quote_by
     } );
 
-}).catch((error) => {
+    }).catch((error) => { 
     console.log(error);
     alert('Something went wrong.');
 });
 
+
 }
 
 
- 
+ // const fetchBook = () => {
+//   // axios.get(`/api/book/${user_id}`).then((response) => {
+
+//   //   const bookData = response.data;
+
+//   //  // console.log('what is the book data' , bookData);
+
+//   //  setBookList(bookData);
+
+//   // }).catch((error) => { 
+//   //   console.log(error);
+//   //   alert('Something went wrong.');
+
+//   // })
+// }
+
+const fetchBook = () => {
+  //console.log('get books!');
+
+  axios.get(`/api/book/${user_id}`).then((response) => {
+    const bookData = response.data;
+    setBookList(bookData);
+  }).catch((error) => {
+    console.log('error in getting book route', error);
+    alert('something went wrong in /book route');
+  });
+}
 
 
   return (
@@ -56,6 +95,11 @@ function UserPage() {
      <p align="center"><i>"{randomQuote.text}" - {randomQuote.quote_by}</i></p>
 {/* 
     {JSON.stringify(quoteList)} */}
+
+
+<p>Book stuff</p>
+
+    {JSON.stringify(bookList)}
 
     
 
