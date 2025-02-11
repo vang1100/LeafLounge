@@ -3,6 +3,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
 import BookList from '../BookList/BookList';
+import { Link } from 'react-router-dom';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -72,21 +73,23 @@ const fetchBook = () => {
 }
 
 
+
+
   return (
 
     <div className="container">
-
-
      <p align="center"><i>"{randomQuote.text}" - {randomQuote.quote_by}</i></p>
 
+     <h4>Welcome, {user.username}!</h4>
 
-<p>Book stuff</p>
+<p>YOUR COLLECTION</p>
     
     {/* {JSON.stringify(bookList)} */}
 
     {bookList.map((book, index) => (
         <div key={index}>
-          <img width ="100"src={book.book_img} alt={book.book_title} />
+          <Link to="/book-details"><img width ="100"src={book.book_img} /></Link>
+          
           <h4>{book.book_title}</h4>
           <p>Author: {book.author}</p>
          
@@ -96,10 +99,10 @@ const fetchBook = () => {
 
     
 
-      <h5>Welcome, {user.username}!</h5>
-      <BookList/>
+      
+      {/* <BookList/>
       <br/>
-      <LogOutButton className="btn" />
+      <LogOutButton className="btn" /> */}
     </div>
   );
 }
