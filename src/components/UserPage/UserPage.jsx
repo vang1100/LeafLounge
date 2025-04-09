@@ -22,14 +22,10 @@ function UserPage() {
     
   }, []);
 
-  useEffect(() => {
-    fetchBook();
-  }, []);
-
   
   // axios to get random quote
  
- const fetchQuote = () => {
+ const fetchQuote = () => { 
 
   axios.get('/api/quote').then((response) => {
    // console.log("SUCCESS!!!", response);
@@ -59,22 +55,6 @@ function UserPage() {
 }
 
 
-const fetchBook = () => {
-  //console.log('get books!');
-
-  axios.get(`/api/book/${user_id}`).then((response) => {
-    console.log('what is the book data', response.data);
-    const book = response.data;
-    setBookList(book);
-  }).catch((error) => {
-    console.log('error in getting book route', error);
-    alert('something went wrong in /book route');
-  });
-}
-
-
-
-
   return (
 
     <div className="container">
@@ -84,9 +64,25 @@ const fetchBook = () => {
 
 <p>YOUR COLLECTION</p>
     
-    {/* {JSON.stringify(bookList)} */}
+   
+      
+      
+      <LogOutButton className="btn" />
+    </div>
+  );
+}
 
-    {bookList.map((book, index) => (
+// this allows us to use <App /> in index.js
+export default UserPage;
+
+ // useEffect(() => {
+  //   fetchBook();
+  // }, []);
+
+
+ {/* {JSON.stringify(bookList)} */}
+
+    {/* {bookList.map((book, index) => (
         <div key={index}>
           <Link to="/book-details"><img width ="100"src={book.book_img} /></Link>
           
@@ -94,18 +90,18 @@ const fetchBook = () => {
           <p>Author: {book.author}</p>
          
         </div>
-      ))}
+      ))} */}
 
 
-    
+// const fetchBook = () => {
+//   //console.log('get books!');
 
-      
-      {/* <BookList/>
-      <br/>
-      <LogOutButton className="btn" /> */}
-    </div>
-  );
-}
-
-// this allows us to use <App /> in index.js
-export default UserPage;
+//   axios.get(`/api/book/${user_id}`).then((response) => {
+//     console.log('what is the book data', response.data);
+//     const book = response.data;
+//     setBookList(book);
+//   }).catch((error) => {
+//     console.log('error in getting book route', error);
+//     alert('something went wrong in /book route');
+//   });
+//}

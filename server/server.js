@@ -29,7 +29,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/quote', quoteRouter);
 app.use('/api/book', bookRouter);
-//app.use('/api/post', postRouter);
+app.use('/api/post', postRouter);
 
 // Listen Server & Port
 app.listen(PORT, () => {

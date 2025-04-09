@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 
-// get route for books by user
+// get route for books by user.id
 
 router.get('/:user_id', (req, res) => {
 
@@ -24,6 +24,7 @@ router.get('/:user_id', (req, res) => {
       res.sendStatus(500);
     })
 })
+
 
 
 
