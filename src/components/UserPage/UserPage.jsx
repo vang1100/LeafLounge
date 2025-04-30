@@ -58,11 +58,11 @@ function UserPage() {
   return (
 
     <div className="container">
-     <p align="center"><i>"{randomQuote.text}" - {randomQuote.quote_by}</i></p>
+    Random Quote: <p align="center"><i>"{randomQuote.text}" - {randomQuote.quote_by}</i></p>
 
-     <h4>Welcome, {user.username}!</h4>
+     <h4>Welcome, {user.username}! You are user: {user.id}</h4>
 
-<p>YOUR COLLECTION</p>
+      <h5>Component: UserPage</h5>
     
    
       

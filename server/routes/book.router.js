@@ -5,7 +5,13 @@ const router = express.Router();
 
 // get route for books by user.id
 
-router.get('/:user_id', (req, res) => {
+router.get('/user/:user_id', (req, res) => {
+
+  // To ensure that only the logged-in user can access their own books
+  
+  if (parseInt(req.params.user_id) !== req.user.id) {
+    return res.status(403).send('Forbidden');
+  }
 
     const user_id = req.params.user_id;
 
