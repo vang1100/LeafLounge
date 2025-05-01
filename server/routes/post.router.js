@@ -2,24 +2,34 @@ const express = require ('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-// need a get route for book details by user id
+// Fetch posts for a specific book belonging to the logged-in user
+router.get('/:book_id', (req, res) => {
+  // Get the authenticated user's ID
+  const user_id = req.user.id;
+  // Get the book_id from the URL parameter
+  const book_id = req.params.book_id;
 
-router.get('/', (req, res) => {
-    const postID = req.params.id;
-    const query = `
+  // Query: Get posts for this user AND this specific book
+  const query = `
     SELECT * FROM "post"
     JOIN "book" ON "book"."id" = "post"."book_id"
-    WHERE "book"."user_id" = $1;
+    WHERE "user_id" = $1 AND "book_id" = $2;
   `;
-  pool.query(query, [postID])
+
+  pool.query(query, [user_id, book_id])
     .then(result => {
-      res.send(result.rows);
+      if (result.rows.length === 0) {
+        // No posts found for this user/book combination
+        res.status(404).send('No posts found for this book');
+      } else {
+        res.send(result.rows);
+      }
     })
     .catch(err => {
-      console.log('ERROR: Getting movie details', err);
-      res.sendStatus(500)
-    })
+      console.error('ERROR: Fetching posts', err);
+      res.sendStatus(500);
+    });
+});
 
-});  
 
 module.exports = router;

@@ -11,7 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const quoteRouter = require('./routes/quote.router');
 const bookRouter = require('./routes/book.router');
-const postRouter = require('./routes/quote.router');
+const postRouter = require('./routes/post.router');
 
 // Express Middleware
 app.use(express.json());
