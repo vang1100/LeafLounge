@@ -1,6 +1,6 @@
 import {React, useEffect, useState} from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import axios from 'axios';
 
 
@@ -10,15 +10,18 @@ function UserPage() {
 
   const user_id = useSelector(state=> state.user.id);
 
-  const books = useSelector(state=> store.books);
+  const books = useSelector(store=> store.books);
 
   console.log('what is user_id', user_id);
+
+  const dispatch = useDispatch();
 
   const [randomQuote, setRandomQuote] = useState({ text: '', quote_by: '' });
 
 
   useEffect(() => {
     fetchQuote();
+    dispatch({ type: 'FETCH_BOOKS'});
     
   }, []);
 
@@ -65,7 +68,6 @@ function UserPage() {
       <h5>Component: UserPage</h5>
     
    
-      
       
       <LogOutButton className="btn" />
     </div>

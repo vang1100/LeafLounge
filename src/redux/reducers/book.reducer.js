@@ -1,11 +1,9 @@
 
 const books = (state = [], action) => {
-    switch (action.type) {
-      case 'SET_BOOKS':
-        return action.payload;
-      default:
-        return state;
+    if (action.type === 'SET_BOOKS') {
+        return action.payload
     }
+        return state;
   }
 
   export default books;

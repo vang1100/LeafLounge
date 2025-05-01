@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 
 function* fetchBooks(action) {
   console.log('fetchBooks saga started', action);
@@ -24,7 +24,7 @@ function* fetchBooks(action) {
 }
 
 function* booksSaga() {
-yield takeLatest('FETCH_BOOKS', fetchBooks)
+yield takeEvery('FETCH_BOOKS', fetchBooks)
 }
 
 export default booksSaga;
