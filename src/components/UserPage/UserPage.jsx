@@ -2,8 +2,7 @@ import {React, useEffect, useState} from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
-import BookList from '../BookList/BookList';
-import { Link } from 'react-router-dom';
+
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -11,11 +10,12 @@ function UserPage() {
 
   const user_id = useSelector(state=> state.user.id);
 
+  const books = useSelector(state=> store.books);
+
   console.log('what is user_id', user_id);
 
   const [randomQuote, setRandomQuote] = useState({ text: '', quote_by: '' });
 
-  const [bookList, setBookList] = useState([]);
 
   useEffect(() => {
     fetchQuote();

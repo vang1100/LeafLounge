@@ -5,7 +5,7 @@ const router = express.Router();
 
 // get route for books by user.id
 
-router.get('/user/:user_id', (req, res) => {
+router.get('/:user_id', (req, res) => {
 
   // To ensure that only the logged-in user can access their own books
   
